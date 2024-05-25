@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2024 at 07:45 AM
+-- Generation Time: May 25, 2024 at 12:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,14 +38,8 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('0b5ed025495008a307f6b06dd1e4cce2', 'i:1;', 1715832983),
-('0b5ed025495008a307f6b06dd1e4cce2:timer', 'i:1715832983;', 1715832983),
-('4a8a4d3b976f32835bea618ea03befc4', 'i:1;', 1715830461),
-('4a8a4d3b976f32835bea618ea03befc4:timer', 'i:1715830461;', 1715830461),
-('c525a5357e97fef8d3db25841c86da1a', 'i:1;', 1715764978),
-('c525a5357e97fef8d3db25841c86da1a:timer', 'i:1715764978;', 1715764978),
-('mozammel79@gmail.com|127.0.0.1', 'i:1;', 1715830463),
-('mozammel79@gmail.com|127.0.0.1:timer', 'i:1715830462;', 1715830462);
+('c525a5357e97fef8d3db25841c86da1a', 'i:1;', 1716631976),
+('c525a5357e97fef8d3db25841c86da1a:timer', 'i:1716631976;', 1716631976);
 
 -- --------------------------------------------------------
 
@@ -67,11 +61,11 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `e_rejects` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `sub_code` int(3) NOT NULL,
-  `litho` varchar(31) NOT NULL,
-  `roll_no` int(6) NOT NULL,
-  `reg_no` int(10) NOT NULL,
-  `addl` int(2) NOT NULL,
+  `sub_code` int(11) NOT NULL,
+  `litho` varchar(255) NOT NULL,
+  `roll_no` int(11) NOT NULL,
+  `reg_no` int(11) NOT NULL,
+  `addl` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -81,9 +75,7 @@ CREATE TABLE `e_rejects` (
 --
 
 INSERT INTO `e_rejects` (`id`, `sub_code`, `litho`, `roll_no`, `reg_no`, `addl`, `created_at`, `updated_at`) VALUES
-(5, 102, '1010101010101010101111010', 345678, 1234567892, 4, '2024-04-19 23:22:55', '2024-04-21 01:56:52'),
-(6, 107, '1010111000111000111000111000000', 345678, 1234567891, 4, '2024-04-19 23:23:36', '2024-04-19 23:23:36'),
-(7, 102, '1010101011111100101010101010101', 484848, 1413123456, 3, '2024-05-15 03:27:41', '2024-05-15 03:27:41');
+(1, 101, '1010101010101010101010101010101', 484848, 1413123456, 3, '2024-05-25 04:12:46', '2024-05-25 04:12:46');
 
 -- --------------------------------------------------------
 
@@ -99,6 +91,24 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `h_rejects`
+--
+
+CREATE TABLE `h_rejects` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `litho` varchar(255) NOT NULL,
+  `sub_code` int(11) NOT NULL,
+  `eb_no` int(11) NOT NULL,
+  `sl_no` int(11) NOT NULL,
+  `marks` int(11) NOT NULL,
+  `chng_marks` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -153,13 +163,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(6, '0001_01_01_000000_create_users_table', 1),
-(7, '0001_01_01_000001_create_cache_table', 1),
-(8, '0001_01_01_000002_create_jobs_table', 1),
-(9, '2024_03_19_041014_add_two_factor_columns_to_users_table', 1),
-(10, '2024_03_19_041044_create_personal_access_tokens_table', 1),
-(11, '2024_04_17_114007_create_reject_entries_table', 1),
-(12, '2024_04_17_115203_create_e_rejects_table', 2);
+(1, '0001_01_01_000000_create_users_table', 1),
+(2, '0001_01_01_000001_create_cache_table', 1),
+(3, '0001_01_01_000002_create_jobs_table', 1),
+(4, '2024_03_19_041014_add_two_factor_columns_to_users_table', 1),
+(5, '2024_03_19_041044_create_personal_access_tokens_table', 1),
+(6, '2024_04_17_114007_create_reject_entries_table', 1),
+(7, '2024_04_17_115203_create_e_rejects_table', 1),
+(8, '2024_05_25_061842_create_h_rejects_table', 1);
 
 -- --------------------------------------------------------
 
@@ -172,13 +183,6 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `password_reset_tokens`
---
-
-INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
-('mozammel79@gmail.com', '$2y$12$0nUrDJcdOlmv1JRdAkm21OsAWd1D7D8j79MDl1YCsF4rsX3KB7zKO', '2024-05-15 21:35:08');
 
 -- --------------------------------------------------------
 
@@ -231,7 +235,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('gKgTCLz7ES2VH2NmzmPPzzwWedXwLGrKgl84bSwc', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Avast/124.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWldvM1VZM3RIck5OWU5FU3VjcU1TbnhxaUllcDRQTGIzRWlvNTl1RiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9lUmVqZWN0X3ByaW50Ijt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1715836046);
+('j4A0jryEyWcLJEhwLhpOwFWdsHivkYB1QU96xcBu', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Avast/124.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibWlzV0JaOEpnWTRaSDdRNDJhbW1aR1VDM0VkcXI5b0IwNFFXaFhhOCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9oUmVqZWN0X3BhZ2UiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1716632503);
 
 -- --------------------------------------------------------
 
@@ -263,9 +267,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `usertype`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(4, 'user', 'user@gmail.com', '01920940626', 'jashore', 'user', NULL, '$2y$12$50.jeOoCkyVK.WNRaZMSbujT7pAcGkzvr1F.NYGgycBpCpEffAEnK', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-15 03:20:54', '2024-05-15 03:20:54'),
-(5, 'admin', 'admin@gmail.com', '01920940626', 'jashore', 'user', NULL, '$2y$12$utgHfPp95wzyNvo7M983JupDi5rzW09JpSQaclK5iezJL.L.Hov/K', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-15 03:21:16', '2024-05-15 03:21:16'),
-(6, 'mozammel', 'mozammel79@gmail.com', '01920940626', 'jashore', 'user', NULL, '$2y$12$TN8o0KmCUymOBHynC4FD8eFYiODXDbj9TFmUogOru2F2V2EuHvgwW', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-15 21:34:26', '2024-05-15 21:34:26');
+(1, 'user', 'user@gmail.com', '01920940626', 'jashore', 'user', NULL, '$2y$12$I0npSqYP7Gu7w0ewob8kUugsi32HOl/J5TVgofeviNGVFrlFPmpXi', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-25 04:06:57', '2024-05-25 04:06:57'),
+(2, 'admin', 'admin@gmail.com', '01920940626', 'jashore', 'admin', NULL, '$2y$12$tO7KCbCtYZGtvpQT.FvvlO2HukOXwjXjEdXmEuGfzRNg5fcw93sW6', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-25 04:07:24', '2024-05-25 04:07:24');
 
 --
 -- Indexes for dumped tables
@@ -295,6 +298,12 @@ ALTER TABLE `e_rejects`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `h_rejects`
+--
+ALTER TABLE `h_rejects`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jobs`
@@ -358,12 +367,18 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `e_rejects`
 --
 ALTER TABLE `e_rejects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `h_rejects`
+--
+ALTER TABLE `h_rejects`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -376,7 +391,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -394,7 +409,7 @@ ALTER TABLE `reject_entries`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

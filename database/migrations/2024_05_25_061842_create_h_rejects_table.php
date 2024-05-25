@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('h_rejects', function (Blueprint $table) {
             $table->id();
+            $table->string('litho');
+            $table->integer('sub_code');
+            $table->integer('eb_no');
+            $table->integer('sl_no');
+            $table->integer('marks');
+            $table->integer('chng_marks');
             $table->timestamps();
         });
     }
