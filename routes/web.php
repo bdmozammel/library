@@ -17,9 +17,10 @@ Route::middleware([
 });
 route::get('/home',[AdminController::class,'index']);
 route::get('/eReject_page',[AdminController::class,'eReject_page']);
+route::get('/hReject_page',[AdminController::class,'hReject_page']);
 
 route::post('/add_eReject',[AdminController::class,'add_eReject']);
-
+route::post('/add_hReject',[AdminController::class,'add_hReject']);
 route::get('/eReject_delete/{id}',[AdminController::class,'eReject_delete']);
 
 route::get('/eReject_edit/{id}',[AdminController::class,'eReject_edit']);
