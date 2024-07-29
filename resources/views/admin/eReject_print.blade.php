@@ -25,6 +25,7 @@
 					
 					@foreach($erejects as $ereject)
 					<tr><td>{{$ereject->id}}</td>
+          <td>{{$ereject->sub_code}}</td>
 					<td>{{$ereject->litho}}</td>
 					<td>{{$ereject->roll_no}}</td>
 					<td>{{ereject->reg_no}}</td>

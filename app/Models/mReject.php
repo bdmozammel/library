@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class hReject extends Model
+class mReject extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'litho', 'sub_code','eb_no','sl_no', 'addl',
-        'marks', 'chng_marks',
+        'answer', 'roll_no','reg_no','set_code', 'sub_code',
+        
     ];
 
 }

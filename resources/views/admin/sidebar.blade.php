@@ -12,6 +12,8 @@
                 <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
                 <li><a href="{{url('eReject_page')}}"> <i class="icon-grid"></i>eReject </a></li>
                 <li><a href="{{url('hReject_page')}}"> <i class="icon-grid"></i>hReject </a></li>
+                <!-- These 3 urls are web.php route it says to move same name function in AdminController to execute-->
+                <li><a href="{{url('mReject_page')}}"> <i class="icon-grid"></i>mReject </a></li>
                 <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\eReject;
 use App\Models\hReject;
+use App\Models\mReject;
+
 
 class AdminController extends Controller
 {
@@ -30,8 +32,7 @@ class AdminController extends Controller
     }
       public function eReject_page() {
        $data=eReject::all();
-           
-        return view('admin.eReject',compact('data'));  
+       return view('admin.eReject',compact('data'));  
 
       }
 
@@ -69,10 +70,10 @@ class AdminController extends Controller
         $erejects=eReject::all();
         return view('admin.eReject_print');  
       }
+      
       public function hReject_page() {
         $data=hReject::all();
-            
-         return view('admin.hReject',compact('data'));  
+        return view('admin.hReject',compact('data'));  
  
        }
        public function add_hReject(Request $request) {
@@ -82,8 +83,39 @@ class AdminController extends Controller
         $data->sub_code = $request->sub_code; 
         $data->eb_no = $request->eb_no; 
         $data->sl_no = $request->sl_no; 
+        $data->addl = $request->addl; 
         $data->marks = $request->marks; 
         $data->chng_marks = $request->chng_marks; 
+        $data->save();
+        return redirect()->back()->with('message','Data added Successfully');
+      } 
+      
+      public function update_hReject(Request $request, $id){
+        $data=hReject::find($id);
+        $data->litho=$request->litho;
+        $data->eb_no=$request->eb_no;
+        $data->sl_no=$request->sl_no;
+        $data->addl=$request->addl;
+        $data->marks=$request->marks;
+        $data->chng_marks=$request->chng_marks;
+        $data->save();
+        return redirect('/hReject_page')->with('message','Data Updated Successfully');
+        //return redirect()->back()->with('message','Data Updated Successfully');
+      }
+
+      public function mReject_page() {
+        $data=mReject::all();
+        return view('admin.mReject',compact('data'));  
+ 
+       }
+       public function add_mReject(Request $request) {
+        $data = new mReject;
+       
+
+        $data->roll_no = $request->roll_no; 
+        $data->reg_no = $request->reg_no; 
+        $data->set_code = $request->set_code;  
+        $data->sub_code = $request->sub_code; 
         $data->save();
         return redirect()->back()->with('message','Data added Successfully');
       }

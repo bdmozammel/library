@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2024 at 12:26 PM
+-- Generation Time: Jul 29, 2024 at 11:32 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,8 +38,12 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('c525a5357e97fef8d3db25841c86da1a', 'i:1;', 1716631976),
-('c525a5357e97fef8d3db25841c86da1a:timer', 'i:1716631976;', 1716631976);
+('0b5ed025495008a307f6b06dd1e4cce2', 'i:1;', 1721806605),
+('0b5ed025495008a307f6b06dd1e4cce2:timer', 'i:1721806605;', 1721806605),
+('c525a5357e97fef8d3db25841c86da1a', 'i:1;', 1722244117),
+('c525a5357e97fef8d3db25841c86da1a:timer', 'i:1722244117;', 1722244117),
+('user@gmail.com|127.0.0.1', 'i:1;', 1721806605),
+('user@gmail.com|127.0.0.1:timer', 'i:1721806605;', 1721806605);
 
 -- --------------------------------------------------------
 
@@ -75,7 +79,7 @@ CREATE TABLE `e_rejects` (
 --
 
 INSERT INTO `e_rejects` (`id`, `sub_code`, `litho`, `roll_no`, `reg_no`, `addl`, `created_at`, `updated_at`) VALUES
-(1, 101, '1010101010101010101010101010101', 484848, 1413123456, 3, '2024-05-25 04:12:46', '2024-05-25 04:12:46');
+(1, 101, '1010101010101010101010101010101', 484849, 2013121218, 0, '2024-07-24 01:53:35', '2024-07-24 01:53:35');
 
 -- --------------------------------------------------------
 
@@ -101,10 +105,11 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `h_rejects` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `litho` varchar(255) NOT NULL,
+  `litho` varchar(31) NOT NULL,
   `sub_code` int(11) NOT NULL,
   `eb_no` int(11) NOT NULL,
   `sl_no` int(11) NOT NULL,
+  `addl` int(11) NOT NULL,
   `marks` int(11) NOT NULL,
   `chng_marks` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -170,7 +175,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2024_03_19_041044_create_personal_access_tokens_table', 1),
 (6, '2024_04_17_114007_create_reject_entries_table', 1),
 (7, '2024_04_17_115203_create_e_rejects_table', 1),
-(8, '2024_05_25_061842_create_h_rejects_table', 1);
+(8, '2024_05_25_061842_create_h_rejects_table', 1),
+(9, '2024_07_25_083120_create_m_rejects_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_rejects`
+--
+
+CREATE TABLE `m_rejects` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `answer` varchar(255) NOT NULL,
+  `roll_no` int(11) NOT NULL,
+  `reg_no` int(11) NOT NULL,
+  `set_code` int(11) NOT NULL,
+  `sub_code` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -235,7 +258,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('j4A0jryEyWcLJEhwLhpOwFWdsHivkYB1QU96xcBu', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Avast/124.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibWlzV0JaOEpnWTRaSDdRNDJhbW1aR1VDM0VkcXI5b0IwNFFXaFhhOCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9oUmVqZWN0X3BhZ2UiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1716632503);
+('gLdJNtvQgduoyP6LgF7CvnlQJr0Kn2aGwtDwCbcD', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Avast/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUFhadUlpVnRlNG1CalJPdU9zRlZFSlc2Q0RaMzdPY0NpUkR5d0lGTSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9tUmVqZWN0X3BhZ2UiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1722225157),
+('nc6uLaRFjHF8HBWv04Aq4wZis28RU3sPIc14ubW2', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Avast/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTThkWTYyUFVlWDdvdmNyeWZyQWxpQWljTlVNRkRvT0ZmQjNxY1ZJQSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9tUmVqZWN0X3BhZ2UiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1722158647),
+('qHvUk0VES1n4FjKd52ADxFIDaRZSOI10jVd2qwS6', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Avast/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVW1hZUx2SzNjaGdGUHpSUklCM0lsZGRNRUVvT3pIazZCSFh0VkI4SiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9tUmVqZWN0X3BhZ2UiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1722245419);
 
 -- --------------------------------------------------------
 
@@ -267,8 +292,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `usertype`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'user', 'user@gmail.com', '01920940626', 'jashore', 'user', NULL, '$2y$12$I0npSqYP7Gu7w0ewob8kUugsi32HOl/J5TVgofeviNGVFrlFPmpXi', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-25 04:06:57', '2024-05-25 04:06:57'),
-(2, 'admin', 'admin@gmail.com', '01920940626', 'jashore', 'admin', NULL, '$2y$12$tO7KCbCtYZGtvpQT.FvvlO2HukOXwjXjEdXmEuGfzRNg5fcw93sW6', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-25 04:07:24', '2024-05-25 04:07:24');
+(1, 'admin', 'admin@gmail.com', '01920940626', 'jashore', 'admin', NULL, '$2y$12$TPwacYVRvpW0KjIfRxatteQXljQcBKdHLvDC5zGSUwtJeUL91RB6i', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-29 05:30:13', '2024-05-29 05:30:13'),
+(2, 'user', 'user@gmail.com', '01920940626', 'jashore', 'user', NULL, '$2y$12$uFeuhMQmDfDQGDQl5k8k8elYIn725r3Ckm0pia/9aJoIacDUXIKkS', NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-29 05:30:34', '2024-05-29 05:30:34');
 
 --
 -- Indexes for dumped tables
@@ -322,6 +347,12 @@ ALTER TABLE `job_batches`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `m_rejects`
+--
+ALTER TABLE `m_rejects`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -391,7 +422,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `m_rejects`
+--
+ALTER TABLE `m_rejects`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

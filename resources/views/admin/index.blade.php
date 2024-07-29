@@ -1,3 +1,4 @@
+<!-- if admin login then enter this page -->
 <!DOCTYPE html>
 <html>
   <head> 

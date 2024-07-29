@@ -18,14 +18,18 @@ Route::middleware([
 route::get('/home',[AdminController::class,'index']);
 route::get('/eReject_page',[AdminController::class,'eReject_page']);
 route::get('/hReject_page',[AdminController::class,'hReject_page']);
+route::get('/mReject_page',[AdminController::class,'mReject_page']);
 
 route::post('/add_eReject',[AdminController::class,'add_eReject']);
 route::post('/add_hReject',[AdminController::class,'add_hReject']);
+route::post('/add_mReject',[AdminController::class,'add_mReject']);
+
 route::get('/eReject_delete/{id}',[AdminController::class,'eReject_delete']);
 
 route::get('/eReject_edit/{id}',[AdminController::class,'eReject_edit']);
 
 
 route::post('/update_eReject/{id}',[AdminController::class,'update_eReject']);
+route::post('/update_hReject/{id}',[AdminController::class,'update_hReject']);
 
 route::get('/eReject_print',[AdminController::class,'eReject_print']);

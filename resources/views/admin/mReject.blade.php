@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- coming from AdminController hReject_page() -->
 <html>
   <head> 
   <base href='/public'>
@@ -17,7 +16,7 @@
         padding: 50px;
         color:white;
     }
-    .hRej_label{
+    .mRej_label{
       font-size: 30px;
       font-weight: bold;
       padding: 30px;
@@ -40,24 +39,11 @@
       padding: 10px;
     }
 
-    .litho{
+    .answer{
       width: 340px;
      
     }
-  input[type=text] {
-  padding: 0;
-  height: 30px;
-  position: relative;
-  left: 0;
-  outline: none;
-  border: 1px solid #cdcdcd;
-  border-color: rgba(0, 0, 0, .15);
-  background-color: white;
-  font-size: 20px;
-}
-.sub_code{
-  width: 50px;
-}
+
   </style>
   </head>
   <body>
@@ -83,32 +69,62 @@
            
              @endif
              </div>
-              <h1 class="hRej_label">Add H-Type Reject Entry </h1> 
-              <a class="btn btn-info" href="{{url('hReject_print')}}">Print</a> 
-              <form action="{{url('add_hReject')}}" method="post">
+              <h1 class="mRej_label">Add E-Type Reject Entry </h1> 
+              <a class="btn btn-info" href="{{url('mReject_print')}}">Print</a> 
+              <form action="{{url('add_eReject')}}" method="post">
                 @csrf
                   <span style="padding-right:15px;">
-                                    
-                  <label>Litho</label>
-                  <input type="text" name="litho" class="litho" maxlength="31" required><br/>
+                 
+                  
+                  <label>Answer</label>
+                  <input type="text" autofocus name="answer" id="txtanswer" class= "answer" onkeypress="mcqinput()"   required><br/>
+                  
+                  <script>
+                    function mcqinput(){
+                      let count=0;
+                   
+                   let x = document.getElementById("txtanswer").value;
+                  if(x==1){
+ 	                document.getElementById("txtanswer").value = "A";
+                  count=count+1;       
+                  }
+                  
+                  if(x==2){
+ 	                document.getElementById("txtanswer").value="B";
+                  count=count+1;       
+                  }
+                  if(x==3){
+ 	                document.getElementById("txtanswer").value="C";
+                  count=count+1;       
+                  }
+                  if(x==5){
+ 	                document.getElementById("txtanswer").value="D";
+                  count=count+1;       
+                  }
+                  if(x==" "){
+ 	                document.getElementById("txtanswer").value=" ";
+                  count=count+1;       
+                  }
+                   
+                  if(x=="*"){
+ 	                document.getElementById("txtanswer").value="*";
+                  count=count+1;       
+                  }
+                    }
+                   
+                  </script>
+                  
+                  <label>Roll NO</label>
+                  <input type="text" name="roll_no" required>
+
+                  <label>Reg NO</label>
+                  <input type="text" name="reg_no" required>
+
+                  <label>Set Code</label>
+                  <input type="text" name="set_code" required><br/>
                   
                   <label>Sub Code</label>
-                  <input type="text" name="sub_code" class="sub_code" maxlength="3" required><br/>
-
-                  <label>EB NO</label>
-                  <input type="text" name="eb_no" required>
-
-                  <label>Script SL NO</label>
-                  <input type="text" name="sl_no" required>
-                  
-                  <label>Additional Script </label>
-                  <input type="text" name="addl" required>
-
-                  <label>Marks</label>
-                  <input type="text" name="marks" required><br/>
-                  
-                  <label>Change Marks</label>
-                  <input type="text" name="Chng_marks" required> 
+                  <input type="text" name="sub_code" required><br/>
                   </span>
                   <input class="btn btn-primary" type="submit" value= "Add Reject">
               </form>
@@ -116,29 +132,24 @@
               
             <table class="center">
               <tr>
-                
-                <th>Litho</th>
+                <th>Answer</th><th>Count</th>
+                <th>Roll NO</th>
+                <th>Reg No</th>
+                <th>set Code</th>
                 <th>Sub Code</th>
-                <th>EB NO</th>
-                <th>SL No</th>
-                <th>Additional</th>
-                <th>Marks</th>
-                <th>Change Marks</th>
                 <th>Action</th>
               </tr>
             @foreach($data as $data)  
               <tr>
                   
-                  <td>{{$data->litho}}</td>
+                  <td>{{$data->answer}}</td><td>{{$count}}</td>
+                  <td>{{$data->roll_no}}</td>
+                  <td>{{$data->reg_no}}</td>
+                  <td>{{$data->set_code}}</td>
                   <td>{{$data->sub_code}}</td>
-                  <td>{{$data->eb_no}}</td>
-                  <td>{{$data->sl_no}}</td>
-                  <td>{{$data->addl}}</td>
-                  <td>{{$data->marks}}</td>
-                  <td>{{$data->chng_marks}}</td>
                   <td>
-                  <a class="btn btn-info" href="{{url('hReject_edit',$data->id)}}">Update</a> 
-                  <a onclick="confirmation(event)" class="btn btn-danger" href="{{url('hReject_delete',$data->id)}}">Delete</a>
+                  <a class="btn btn-info" href="{{url('mReject_edit',$data->id)}}">Update</a> 
+                  <a onclick="confirmation(event)" class="btn btn-danger" href="{{url('mReject_delete',$data->id)}}">Delete</a>
                 </td>
               </tr>
             @endforeach

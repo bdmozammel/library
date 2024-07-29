@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('h_rejects', function (Blueprint $table) {
+        Schema::create('m_rejects', function (Blueprint $table) {
             $table->id();
-            $table->string('litho');
+            $table->string('answer');
+            $table->integer('roll_no');
+            $table->integer('reg_no');
+            $table->integer('set_code');
             $table->integer('sub_code');
-            $table->integer('eb_no');
-            $table->integer('sl_no');
-            $table->integer('addl');
-            $table->integer('marks');
-            $table->integer('chng_marks');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('h_rejects');
+        Schema::dropIfExists('m_rejects');
     }
 };
