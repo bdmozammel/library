@@ -74,18 +74,53 @@
               <form action="{{url('add_eReject')}}" method="post">
                 @csrf
                   <span style="padding-right:15px;">
-                 
-                  
-                  <label>Answer</label>
                   <input type="text" autofocus name="answer" id="txtanswer" class= "answer" onkeypress="mcqinput()"   required><br/>
                   
+                  
+                  
+                  <label>Answer</label>
+                  <input type ="text" autofocus name="answer" id="txtanswer" required >  <br/>
+                  <p>This is a paragraph</p>
                   <script>
-                    function mcqinput(){
+                  var count=0;
+                  document.queryselector("txtanswer").addEventListener("keypress",function (event){
+                  count++;
+                  var text = event.key;
+                  document.querySelector("p").innerHTML=count;});
+                   /*    
+                  if(answer==1){
+                  document.queryselector("txtanswer").innerHTML="A";
+ 	                                       
+                  }
+                  
+                  if(text==2){
+                    document.queryselector("txtanswer").innerHTML="B";
+                        
+                  }
+                  if(tex==3){
+                    document.queryselector("txtanswer").innerHTML="C";
+                        
+                  }
+                  if(x==5){
+                    document.queryselector("txtanswer").innerHTML="D";
+                       
+                  }
+                  if(x==" "){
+                    document.queryselector("txtanswer").innerHTML=" ";
+                     
+                  }
+                   
+                  if(x=="*"){
+ 	                 document.queryselector("txtanswer").innerHTML="*";
+                        
+                  }
+                  -------------------------------------------old code
+                   function mcqinput(){
                       let count=0;
                    
                    let x = document.getElementById("txtanswer").value;
                   if(x==1){
- 	                document.getElementById("txtanswer").value = "A";
+ 	                document.getElementById("txtanswer").value="A";
                   count=count+1;       
                   }
                   
@@ -110,7 +145,9 @@
  	                document.getElementById("txtanswer").value="*";
                   count=count+1;       
                   }
-                    }
+                    } 
+                  */ 
+                   
                    
                   </script>
                   
